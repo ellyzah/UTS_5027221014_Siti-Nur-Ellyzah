@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package libraryPackage;
+
+service LibraryService {
+  rpc GetAllBooks (Empty) returns (Books) {};
+  rpc GetBookByID (BookID) returns (Book) {};
+  rpc AddBook (Book) returns (Response) {};
+  rpc UpdateBook (BookWithID) returns (Response) {};
+  rpc DeleteBook (BookID) returns (Response) {};
+}
+
+message Book {
+  string title = 1;
+  string author = 2;
+  string publisher = 3;
+  int64 yearPublication = 4;
+  int64 ISBN = 5;
+  string loanBooks = 6;
+  string description = 7;
+}
+
+message BookID {
+  string id = 1;
+}
+
+message Books {
+  repeated Book books = 1;
+}
+
+message BookWithID {
+  BookID bookId = 1;
+  Book book = 2; 
+}
+
+message Response {
+  string responseMsg = 1;
+}
+
+message Empty {}

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinjam Buku - Siti Nur Ellyzah</title>
+
+    <style>
+        body,
+        *,
+        html {
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            font-family: 'poppins', sans-serif;
+        }
+
+        section {
+            width: 100vw;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form {
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            padding: 1rem;
+            margin-top: 90px;
+            align-items: center;
+            justify-content: center;
+            width: 800px;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-title {
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+            font-weight: 600;
+            text-align: center;
+            color: #000;
+        }
+
+        .input-container {
+            position: relative;
+        }
+
+        .input-container input,
+        .form button {
+            outline: none;
+            border: 1px solid #e5e7eb;
+            margin: 8px 0;
+        }
+
+        .input-container input {
+            background-color: #fff;
+            padding: 1rem;
+            padding-right: 3rem;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            width: 300px;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        .input-container textarea {
+            background-color: #fff;
+            padding: .5rem;
+            padding-right: 3rem;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            width: 300px;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        .input-container span {
+            display: grid;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            place-content: center;
+        }
+
+        .input-container span svg {
+            color: #9CA3AF;
+            width: 1rem;
+            height: 1rem;
+        }
+
+        .submit {
+            display: block;
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+            padding-left: 1.25rem;
+            padding-right: 1.25rem;
+            background-color: #4F46E5;
+            color: #ffffff;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            font-weight: 500;
+            width: 300px;
+            cursor: pointer;
+            border-radius: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .submit:hover {
+            background-color: rgb(4, 36, 131);
+        }
+
+        .submit:active {
+            transform: scale(.98);
+        }
+
+        .signup-link {
+            color: #6B7280;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            text-align: center;
+        }
+
+        .signup-link a {
+            text-decoration: underline;
+        }
+
+        .flex {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <form id="updateBookForm" class="form" action="#" method="post">
+            <p class="form-title">Pinjam Buku</p>
+            <section class="flex">
+                <div>
+                    <div class="input-container">
+                        <input placeholder="Judul" value="" type="text" id="title">
+                    </div>
+                    <div class="input-container">
+                        <input placeholder="Penulis" value="" type="text" id="author">
+                    </div>
+                    <div class="input-container">
+                        <input placeholder="Penerbit" value="" type="text" id="publisher">
+                    </div>
+                    <div class="input-container">
+                        <input placeholder="Tahun Terbit" value="" type="number" id="yearPublication">
+                    </div>
+                </div>
+                <div>
+                    <div class="input-container">
+                        <input placeholder="ID Buku" type="text" id="_id">
+                    </div>
+                    <div class="input-container">
+                        <input placeholder="ISBN" type="number" id="ISBN">
+                    </div>
+                    <div class="input-container">
+                        <input placeholder="Tanggal Pinjam" type="date" id="loanBooks">
+                    </div>
+                    <div class="input-container">
+                        <textarea placeholder="Deskripsi" id="description"></textarea>
+                    </div>
+                </div>
+            </section>
+            <button class="submit" type="submit">
+                Pinjam
+            </button>
+        </form>
+
+    </section>
+
+    <script>
+        const updateBookForm = document.getElementById('updateBookForm');
+        // const prev = document.getElementById('prev'
+
+        // async function fethPrev() {
+        //     const res = await fetch('http://localhost:3000/library/books');
+        //     const datas = await res.json()
+        //     const results = datas.books
+        //     console.log(results);
+        //     prev.innerHTML = results.map((item) => {
+        //         return (
+        //             `
+        //     <div class="input-container">
+        //     <input placeholder="Judul" value=${item.title} type="text" id="title">
+        // </div>
+        // <div class="input-container">
+        //     <input placeholder="Penulis" value=${item.author} type="text" id="author">
+        // </div>
+        // <div class="input-container">
+        //     <input placeholder="Penerbit" value=${item.publisher} type="text" id="publisher">
+        // </div>
+        // <div class="input-container">
+        //     <input placeholder="Tahun Terbit" value=${item.yearPublication} type="number" id="yearPublication">
+        // </div>
+        //         `
+        //         )
+        //     })
+        // }
+
+        // fethPrev()
+
+        updateBookForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const _id = document.getElementById('_id').value;
+            const title = document.getElementById('title').value;
+            const author = document.getElementById('author').value;
+            const publisher = document.getElementById('publisher').value;
+            const yearPublication = document.getElementById('yearPublication').value;
+            const ISBN = document.getElementById('ISBN').value;
+            const loanBooks = document.getElementById('loanBooks').value;
+            const description = document.getElementById('description').value;
+
+            const data = {
+                _id: _id,
+                title: title,
+                author: author,
+                publisher: publisher,
+                yearPublication: yearPublication,
+                ISBN: ISBN,
+                loanBooks: loanBooks,
+                description: description
+            };
+
+            fetch(`http://localhost:3000/library/books/${_id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    alert('Loan book successfully!', data)
+                    console.log('Success:', data);
+                    updateBookForm.reset();
+                    window.location.href = './index.html'
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert('Registrasi gagal, silakan coba lagi.');
+                });
+        });
+
+    </script>
+</body>
+
+</html>
